@@ -22,13 +22,13 @@ elif [ -f "${PROJECT_DIR}/../node_modules/.bin/claude-flow" ]; then
   cd "${PROJECT_DIR}"
   exec "${PROJECT_DIR}/../node_modules/.bin/claude-flow" "$@"
 
-# 3. Global installation (npm install -g claude-flow)
-elif command -v claude-flow &> /dev/null; then
-  cd "${PROJECT_DIR}"
-  exec claude-flow "$@"
+# 3. Skip global installation due to config error
+# elif command -v claude-flow &> /dev/null; then
+#   cd "${PROJECT_DIR}"
+#   exec claude-flow "$@"
 
-# 4. Fallback to npx (will download if needed)
-else
+# 4. Use npx directly (safer and more reliable)
+# else
   cd "${PROJECT_DIR}"
   exec npx claude-flow@latest "$@"
-fi
+# fi
